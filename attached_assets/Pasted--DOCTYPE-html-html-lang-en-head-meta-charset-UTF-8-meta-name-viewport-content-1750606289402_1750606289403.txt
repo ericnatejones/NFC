@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NFC RESURRECTION | Jacob's Ladder Awaits</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto+Mono:wght@300;400;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            color: #e0e0e0;
+            font-family: 'Roboto Mono', monospace;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(120, 219, 226, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .glitch {
+            font-family: 'Orbitron', monospace;
+            font-weight: 900;
+            text-transform: uppercase;
+            position: relative;
+            color: #fff;
+            font-size: 4rem;
+            letter-spacing: 0.1em;
+            animation: glitch-main 2s infinite;
+        }
+        
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .glitch::before {
+            animation: glitch-1 0.5s infinite;
+            color: #ff0040;
+            z-index: -1;
+        }
+        
+        .glitch::after {
+            animation: glitch-2 0.5s infinite;
+            color: #00ffff;
+            z-index: -2;
+        }
+        
+        @keyframes glitch-main {
+            0%, 98% { transform: translate(0); }
+            2% { transform: translate(2px, 0); }
+        }
+        
+        @keyframes glitch-1 {
+            0%, 98% { transform: translate(0); }
+            2% { transform: translate(-2px, 0); }
+        }
+        
+        @keyframes glitch-2 {
+            0%, 98% { transform: translate(0); }
+            2% { transform: translate(2px, 0); }
+        }
+        
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.5)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><filter id="turbulence"><feTurbulence baseFrequency="0.9" numOctaves="4" result="noise"/><feDisplacementMap in="SourceGraphic" in2="noise" scale="100"/></filter></defs><rect width="100%" height="100%" fill="%23001122" filter="url(%23turbulence)"/></svg>');
+            background-size: cover;
+            background-attachment: fixed;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #00ffff;
+            margin-top: 1rem;
+            font-weight: 300;
+            letter-spacing: 0.2em;
+        }
+        
+        .tagline {
+            font-size: 1.5rem;
+            color: #ff6b6b;
+            margin-top: 2rem;
+            font-weight: 700;
+            text-shadow: 0 0 20px rgba(255, 107, 107, 0.5);
+        }
+        
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #888;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+        
+        .section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section h2 {
+            font-family: 'Orbitron', monospace;
+            font-size: 2.5rem;
+            color: #00ffff;
+            margin-bottom: 2rem;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        
+        .manifesto {
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid #ff6b6b;
+            border-radius: 10px;
+            padding: 3rem;
+            margin: 2rem 0;
+            box-shadow: 0 0 30px rgba(255, 107, 107, 0.3);
+        }
+        
+        .manifesto p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: #e0e0e0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .stat-card {
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid #00ffff;
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(0, 255, 255, 0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.5s;
+            opacity: 0;
+        }
+        
+        .stat-card:hover::before {
+            animation: shine 0.5s ease-in-out;
+            opacity: 1;
+        }
+        
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.3);
+        }
+        
+        .stat-number {
+            font-family: 'Orbitron', monospace;
+            font-size: 3rem;
+            color: #ff6b6b;
+            font-weight: 900;
+        }
+        
+        .stat-label {
+            color: #00ffff;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-top: 0.5rem;
+        }
+        
+        .timeline {
+            position: relative;
+            margin: 3rem 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #ff6b6b, #00ffff);
+            transform: translateX(-50%);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin: 3rem 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            flex-direction: row-reverse;
+        }
+        
+        .timeline-content {
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid #333;
+            border-radius: 10px;
+            padding: 2rem;
+            width: 45%;
+            position: relative;
+        }
+        
+        .timeline-year {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.5rem;
+            color: #ff6b6b;
+            font-weight: 700;
+        }
+        
+        .timeline-text {
+            color: #ccc;
+            margin-top: 1rem;
+            line-height: 1.6;
+        }
+        
+        .terminal {
+            background: #000;
+            border: 2px solid #00ff00;
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 0;
+            font-family: 'Roboto Mono', monospace;
+            color: #00ff00;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+        }
+        
+        .terminal-header {
+            color: #ff6b6b;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .terminal-line {
+            margin: 0.5rem 0;
+        }
+        
+        .cursor {
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        
+        .resurrection-banner {
+            background: linear-gradient(45deg, #ff6b6b, #ff9f43, #00d2d3);
+            padding: 3px;
+            border-radius: 15px;
+            margin: 3rem 0;
+        }
+        
+        .resurrection-content {
+            background: #000;
+            border-radius: 12px;
+            padding: 3rem;
+            text-align: center;
+        }
+        
+        .resurrection-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, #ff6b6b, #00ffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+        
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .media-item {
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid #333;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .media-item:hover {
+            transform: scale(1.05);
+            border-color: #00ffff;
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.2);
+        }
+        
+        .media-placeholder {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #333, #666);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            font-size: 1.2rem;
+        }
+        
+        .media-caption {
+            padding: 1.5rem;
+            color: #ccc;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        .cta-section {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(0, 255, 255, 0.1));
+            margin: 4rem 0;
+            border-radius: 20px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff6b6b, #00ffff);
+            color: #000;
+            padding: 1rem 3rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(255, 107, 107, 0.3);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.5);
+        }
+        
+        @media (max-width: 768px) {
+            .glitch {
+                font-size: 2.5rem;
+            }
+            
+            .timeline::before {
+                left: 2rem;
+            }
+            
+            .timeline-item {
+                flex-direction: column !important;
+                align-items: flex-start;
+                margin-left: 4rem;
+            }
+            
+            .timeline-content {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <h1 class="glitch" data-text="NFC RESURRECTION">NFC RESURRECTION</h1>
+        <p class="subtitle">JACOB'S LADDER ISN'T FINISHED WITH US</p>
+        <p class="tagline">CLASS V LEGEND RISES FROM THE GRAVE</p>
+        <div class="scroll-indicator">▼ SCROLL TO WITNESS ▼</div>
+    </div>
+
+    <div class="section">
+        <div class="manifesto">
+            <h2>THE RESURRECTION MANIFESTO</h2>
+            <p>They thought they killed it. Insurance companies, bureaucrats, risk-averse suits who've never felt the pull of a hydraulic or the rush of threading a needle at Jacob's Ladder. They thought canceling the North Fork Championship would be the end.</p>
+            <p>They were fucking wrong.</p>
+            <p>The NFC wasn't just a race—it was the proving ground where legends carved their names into Idaho granite. Where Hayden Voorhees went sub-90 seconds and made us all question physics. Where every spring, the sickest boaters on the planet gathered to push the absolute limits of what's possible in a plastic boat.</p>
+            <p>Insurance killed the original, but you can't insure against obsession. You can't underwrite the addiction to sending it harder, faster, cleaner than anyone thought possible.</p>
+            <p>This is bigger than permits and policies. This is about preserving the soul of whitewater racing before it gets sanitized into oblivion.</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>BY THE NUMBERS</h2>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">10</div>
+                <div class="stat-label">Years of Glory</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">2:17</div>
+                <div class="stat-label">2012 Winning Time</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">&lt;1:30</div>
+                <div class="stat-label">2022 Final Time</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">163</div>
+                <div class="stat-label">Population of Crouch</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">0</div>
+                <div class="stat-label">Insurance Claims Ever</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">∞</div>
+                <div class="stat-label">Legend Status</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>TIMELINE OF DOMINANCE</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-year">2013</div>
+                    <div class="timeline-text">The NFC is born on the North Fork Payette. Class V racing finally has its cathedral.</div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-year">2014</div>
+                    <div class="timeline-text">Katrina Van Wijk becomes first female competitor. The boys' club officially gets schooled.</div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-year">2015</div>
+                    <div class="timeline-text">Nouria Newman finishes 8th overall. French precision meets Idaho chaos.</div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-year">2019</div>
+                    <div class="timeline-text">Women's category officially added. Progress finally catches up to talent.</div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-year">2022</div>
+                    <div class="timeline-text">Record turnout. Dance floor collapses. Sub-90 second runs. Peak NFC achieved.</div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-year">2023</div>
+                    <div class="timeline-text">The Insurance Apocalypse. ACA pulls plug. NFC officially "dead."</div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-year">202?</div>
+                    <div class="timeline-text">RESURRECTION. The legend returns. Stronger. Faster. More underground than ever.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="terminal">
+            <div class="terminal-header">>> SYSTEM STATUS: RESURRECTION PROTOCOL INITIATED</div>
+            <div class="terminal-line">$ grep -r "class_v_legend" /var/log/whitewater/*</div>
+            <div class="terminal-line">Found: north_fork_championship.legacy</div>
+            <div class="terminal-line">Status: TERMINATED by insurance_bureaucrats.exe</div>
+            <div class="terminal-line">$ ./resurrect_legend.sh --force --underground</div>
+            <div class="terminal-line">Loading core memories...</div>
+            <div class="terminal-line">Jacob's Ladder: [████████████████████] 100%</div>
+            <div class="terminal-line">Hayden's sub-90: [████████████████████] 100%</div>
+            <div class="terminal-line">Crouch dance floor collapse: [████████████████████] 100%</div>
+            <div class="terminal-line">Ryan Casey 2012 standard: [████████████████████] 100%</div>
+            <div class="terminal-line">Nouria's 8th place run: [████████████████████] 100%</div>
+            <div class="terminal-line">RESURRECTION STATUS: ACTIVE<span class="cursor">█</span></div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="resurrection-banner">
+            <div class="resurrection-content">
+                <div class="resurrection-title">THE PHOENIX RISES</div>
+                <p style="font-size: 1.2rem; color: #ccc; margin-bottom: 2rem;">New name. Same sickness. Zero corporate oversight.</p>
+                <p style="color: #888;">The NFC died so something better could be born. Something that can't be killed by insurance policies or bureaucratic risk assessments. Something that exists purely for the sickest paddlers who need to prove they can thread Jacob's Ladder faster than physics should allow.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>ARCHIVAL EVIDENCE</h2>
+        <div class="media-grid">
+            <div class="media-item">
+                <div class="media-placeholder">LOADING...</div>
+                <div class="media-caption">
+                    <strong>Cole Moore, 2002 NFC</strong><br>
+                    Back when the event was still finding its legs and Cole was showing the young guns how it's done. Note the vintage gear and absolute commitment to sending it regardless of consequences. | Photo: Dan Stewart
+                </div>
+            </div>
+            <div class="media-item">
+                <div class="media-placeholder">LOADING...</div>
+                <div class="media-caption">
+                    <strong>Alec Voorhees Mid-Send</strong><br>
+                    This is what peak performance looks like—body position perfect, paddle placement clinical, eyes already on the next move while most mortals would still be processing the current one. Pure NFC DNA. | Photo: Dan Stewart
+                </div>
+            </div>
+            <div class="media-item">
+                <div class="media-placeholder">LOADING...</div>
+                <div class="media-caption">
+                    <strong>Holt McWhirt, 2022 Whitewater King</strong><br>
+                    When New York sends their best to prove East Coast paddlers can hang with the Idaho delinquents. Spoiler: they absolutely can. This is the bloodline that keeps class V racing alive. | Photo: Sonia Szczesna
+                </div>
+            </div>
+            <div class="media-item">
+                <div class="media-placeholder">LOADING...</div>
+                <div class="media-caption">
+                    <strong>Sage Donnelly, Final NFC 2022</strong><br>
+                    The last documented run of the original championship. Sage didn't know it then, but this moment captured the end of an era and the beginning of a legend that refuses to die. | Photo: Dan Stewart
+                </div>
+            </div>
+            <div class="media-item">
+                <div class="media-placeholder">LOADING...</div>
+                <div class="media-caption">
+                    <strong>Mercedes Furr, Green River Takeover 2019</strong><br>
+                    Before the women's category was even official, Mercedes was already proving that the fastest lines through class V don't discriminate. Raw talent meets perfectly executed rebellion. | Photo: Rob Giersch
+                </div>
+            </div>
+            <div class="media-item">
+                <div class="media-placeholder">LOADING...</div>
+                <div class="media-caption">
+                    <strong>Danny Siger, Whitewater King NY</strong><br>
+                    The underground network that kept class V racing alive after the insurance apocalypse. Every gate, every line, every split-second decision matters when you're racing for more than just times. | Photo: Sonia Szczesna
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="cta-section">
+        <h2 style="margin-bottom: 2rem;">JOIN THE RESURRECTION</h2>
+        <p style="font-size: 1.2rem; margin-bottom: 2rem; color: #ccc;">This isn't about bringing back the old NFC. This is about building something that can't be killed by bureaucrats who've never sent a class V rapid in their lives.</p>
+        <a href="#" class="cta-button">INITIATE RESURRECTION PROTOCOL</a>
+        <p style="margin-top: 2rem; font-size: 0.9rem; color: #666;">No insurance companies were consulted in the making of this legend.</p>
+    </div>
+
+    <script>
+        // Terminal typing effect
+        document.addEventListener('DOMContentLoaded', function() {
+            const terminalLines = document.querySelectorAll('.terminal-line');
+            
+            function typeWriter(element, text, speed = 50) {
+                let i = 0;
+                element.innerHTML = '';
+                function type() {
+                    if (i < text.length) {
+                        element.innerHTML += text.charAt(i);
+                        i++;
+                        setTimeout(type, speed);
+                    }
+                }
+                type();
+            }
+            
+            // Add some interactive elements
+            document.querySelectorAll('.stat-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    this.style.transform = 'scale(1.1) rotateY(10deg)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 200);
+                });
+            });
+            
+            // Parallax effect for hero section
+            window.addEventListener('scroll', function() {
+                const scrolled = window.pageYOffset;
+                const hero = document.querySelector('.hero');
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            });
+            
+            // Random glitch effects
+            setInterval(() => {
+                const glitch = document.querySelector('.glitch');
+                glitch.style.transform = `translate(${Math.random() * 4 - 2}px, ${Math.random() * 4 - 2}px)`;
+                setTimeout(() => {
+                    glitch.style.transform = 'translate(0)';
+                }, 100);
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
