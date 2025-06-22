@@ -3,8 +3,8 @@ export default function HeroSection() {
     <section className="relative min-h-screen flex items-center justify-center resurrection-bg">
       <div className="absolute inset-0 bg-black bg-opacity-40"></div>
       <img 
-        src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080" 
-        alt="Triumphant kayakers emerging from golden hour mist on raging whitewater" 
+        src="/attached_assets/nfc1.png" 
+        alt="North Fork Championship kayaking competition" 
         className="absolute inset-0 w-full h-full object-cover mix-blend-overlay"
       />
       

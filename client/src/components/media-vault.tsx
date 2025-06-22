@@ -3,37 +3,37 @@ export default function MediaVault() {
     {
       title: "NFC VIII FINALS",
       description: "137 male and 18 female extreme sport whitewater racers competed on class V rapids. The largest NFC ever recorded.",
-      image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300",
+      image: "/attached_assets/nfc1.png",
       archived: "June 2019"
     },
     {
       title: "KOKATAT QUALIFIER",
       description: "Round One cut the field from 137 to 40 men, 18 to 10 women. Joe Morley and Mariann Saether claimed victory.",
-      image: "https://images.unsplash.com/photo-1551698618-1dfe5d97d256?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300",
+      image: "/attached_assets/nfc2.png",
       archived: "June 2019"
     },
     {
       title: "HEAD-TO-HEAD BATTLES",
       description: "Fierce competition. Personal battles. 1st vs 40th, 2nd vs 39th. Only the fastest advanced to Jacob's Ladder.",
-      image: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300",
+      image: "/attached_assets/nfc3.jpg",
       archived: "June 2019"
     },
     {
       title: "WORLD CHAMPIONS CROWNED",
       description: "Dane Jackson (USA) and Mariann Saether (NOR) claimed the AWP World Championship titles in 2019.",
-      image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300",
+      image: "/attached_assets/nfc4.jpeg",
       archived: "June 2019"
     },
     {
       title: "19 NATIONS UNITED",
       description: "The global whitewater community gathered. From France to New Zealand, the chosen came to witness glory.",
-      image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300",
+      image: "/attached_assets/nfc5.jpg",
       archived: "June 2019"
     },
     {
       title: "CROUCH FESTIVAL",
       description: "The Egyptian Theater. The Whitewater Awards. The dance floor that collapsed under the weight of celebration.",
-      image: "https://images.unsplash.com/photo-1541701494587-cb58502866ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300",
+      image: "/attached_assets/nfc6.jpg",
       archived: "June 2019"
     }
   ];
